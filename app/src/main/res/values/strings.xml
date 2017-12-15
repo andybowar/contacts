@@ -11,4 +11,7 @@
     <string name="address">Address</string>
     <string name="edit">Edit</string>
     <string name="phone">Phone</string>
+    <string name="clear" />
+    <string name="cancelContact" />
+    <string name="delete" />
 </resources>

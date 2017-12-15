@@ -71,12 +71,27 @@ public class ContactEdit extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void cancelContact (View view) {
+    public void clearForm (View view) {
         editFirst.setText("");
         editLast.setText("");
         editPhone.setText("");
         editAddress.setText("");
-
     }
 
+    public void cancelContact(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
+
+    public void deleteContact(View view) {
+        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+        Contact contact = new Contact(id,
+                editFirst.getText().toString(),
+                editLast.getText().toString(),
+                editPhone.getText().toString(),
+                editAddress.getText().toString());
+        dbHandler.removeContact(contact);
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
 }
