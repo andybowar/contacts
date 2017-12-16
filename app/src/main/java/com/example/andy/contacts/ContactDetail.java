@@ -1,13 +1,21 @@
 package com.example.andy.contacts;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class ContactDetail extends AppCompatActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class ContactDetail extends FragmentActivity implements OnMapReadyCallback {
 
     public int id;
     public String firstName = null;
@@ -20,8 +28,12 @@ public class ContactDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_detail);
 
-        Bundle extras = getIntent().getExtras();
+        // Implement map fragment components for Google Maps
 
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             // Retrieve each variable from main activity
@@ -49,6 +61,13 @@ public class ContactDetail extends AppCompatActivity {
         startActivity(callIntent);
     }
 
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
+    }
+
     public void editContact(View view) {
 
         Intent contactEdit = new Intent(this, ContactEdit.class);
@@ -59,5 +78,6 @@ public class ContactDetail extends AppCompatActivity {
         contactEdit.putExtra("address", address);
         startActivity(contactEdit);
     }
-    
 }
+
+
