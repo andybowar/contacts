@@ -10,13 +10,15 @@ public class Contact {
     private String _lastName;
     private String _phone;
     private String _address;
+    private String _email;
 
-    public Contact (int id, String firstName, String lastName, String phone, String address) {
+    public Contact (int id, String firstName, String lastName, String phone, String address, String email) {
         this._id = id;
         this._firstName = firstName;
         this._lastName = lastName;
         this._phone = phone;
         this._address = address;
+        this._email = email;
     }
 
     public String toString() {
@@ -38,6 +40,9 @@ public class Contact {
     public void setAddress (String address) {
         this._address = address;
     }
+    public void setEmail (String email) {
+        this._email = email;
+    }
 
     public int getID() {
         return this._id;
@@ -53,6 +58,9 @@ public class Contact {
     }
     public String getAddress() {
         return this._address;
+    }
+    public String getEmail() {
+        return this._email;
     }
 
 }

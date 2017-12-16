@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             String lastName = contact.getLastName();
             String phone = contact.getPhone();
             String address = contact.getAddress();
+            String email = contact.getEmail();
 
             Intent contactItem = new Intent(MainActivity.this, ContactDetail.class);
             // Send each variable to activity
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             contactItem.putExtra("lastName", lastName);
             contactItem.putExtra("phone", phone);
             contactItem.putExtra("address", address);
+            contactItem.putExtra("email", email);
             startActivity(contactItem);
         }
     }

@@ -20,6 +20,7 @@ public class ContactDetail extends FragmentActivity implements OnMapReadyCallbac
     public String lastName = null;
     public String phone = null;
     public String address = null;
+    public String email = null;
 
 
     @Override
@@ -40,23 +41,35 @@ public class ContactDetail extends FragmentActivity implements OnMapReadyCallbac
             lastName = extras.getString("lastName");
             phone = extras.getString("phone");
             address = extras.getString("address");
+            email = extras.getString("email");
         }
 
         TextView firstNameField = (TextView) findViewById(R.id.firstName);
         TextView lastNameField = (TextView) findViewById(R.id.lastName);
         TextView phoneField = (TextView) findViewById(R.id.phone);
         TextView addressField = (TextView) findViewById(R.id.address);
+        TextView emailField = (TextView) findViewById(R.id.email);
 
         firstNameField.setText(String.format(firstName));
         lastNameField.setText(String.format(lastName));
         phoneField.setText(String.format(phone));
         addressField.setText(String.format(address));
+        emailField.setText(String.format(email));
     }
 
     public void call(View view) {
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:" + phone));
         startActivity(callIntent);
+    }
+
+    public void email(View view) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("plain/text");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Test subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+        startActivity(emailIntent);
     }
 
     @Override
@@ -75,6 +88,7 @@ public class ContactDetail extends FragmentActivity implements OnMapReadyCallbac
         contactEdit.putExtra("lastName", lastName);
         contactEdit.putExtra("phone", phone);
         contactEdit.putExtra("address", address);
+        contactEdit.putExtra("email", email);
         startActivity(contactEdit);
     }
 }

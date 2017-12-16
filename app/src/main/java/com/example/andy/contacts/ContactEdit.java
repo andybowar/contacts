@@ -13,12 +13,14 @@ public class ContactEdit extends AppCompatActivity {
     EditText editLast;
     EditText editPhone;
     EditText editAddress;
+    EditText editEmail;
 
     public int id;
     public String firstName = null;
     public String lastName = null;
     public String phone = null;
     public String address = null;
+    public String email = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class ContactEdit extends AppCompatActivity {
         editLast = (EditText) findViewById(R.id.editLast);
         editPhone = (EditText) findViewById(R.id.editPhone);
         editAddress = (EditText) findViewById(R.id.editAddress);
+        editEmail = (EditText) findViewById(R.id.editEmail);
 
         Bundle extras = getIntent().getExtras();
 
@@ -39,12 +42,14 @@ public class ContactEdit extends AppCompatActivity {
             lastName = extras.getString("lastName");
             phone = extras.getString("phone");
             address = extras.getString("address");
+            email = extras.getString("email");
         }
 
         editFirst.setText(firstName);
         editLast.setText(lastName);
         editPhone.setText(phone);
         editAddress.setText(address);
+        editEmail.setText(email);
     }
 
     public void saveContact (View view) {
@@ -55,7 +60,8 @@ public class ContactEdit extends AppCompatActivity {
                                       editFirst.getText().toString(),
                                       editLast.getText().toString(),
                                       editPhone.getText().toString(),
-                                      editAddress.getText().toString());
+                                      editAddress.getText().toString(),
+                                      editEmail.getText().toString());
 
         ArrayList<Integer> idList = dbHandler.selectId();
 
@@ -76,6 +82,7 @@ public class ContactEdit extends AppCompatActivity {
         editLast.setText("");
         editPhone.setText("");
         editAddress.setText("");
+        editEmail.setText("");
     }
 
     public void cancelContact(View view) {
@@ -89,7 +96,8 @@ public class ContactEdit extends AppCompatActivity {
                 editFirst.getText().toString(),
                 editLast.getText().toString(),
                 editPhone.getText().toString(),
-                editAddress.getText().toString());
+                editAddress.getText().toString(),
+                editEmail.getText().toString());
         dbHandler.removeContact(contact);
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
