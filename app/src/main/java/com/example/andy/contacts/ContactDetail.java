@@ -1,11 +1,9 @@
 package com.example.andy.contacts;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,13 +21,13 @@ public class ContactDetail extends FragmentActivity implements OnMapReadyCallbac
     public String phone = null;
     public String address = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_detail);
 
         // Implement map fragment components for Google Maps
-
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -63,6 +61,7 @@ public class ContactDetail extends FragmentActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap map) {
+
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(0, 0))
                 .title("Marker"));
